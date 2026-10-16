@@ -30,7 +30,7 @@ const projects = await getProjects();
       <ul class="project-list">
         {projects.map((project) => (
           <li>
-            <ProjectRow project={project} headingLevel={2} />
+            <ProjectRow project={project} headingLevel={2} showImage />
           </li>
         ))}
       </ul>

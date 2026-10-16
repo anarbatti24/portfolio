@@ -130,10 +130,49 @@
   font-size: var(--text-sm);
 }
 
-.project-row__image {
-  margin-top: var(--space-4);
+/* The optional lead image at the top of a project page. */
+.project-lead-image {
+  margin-top: var(--space-5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+}
+
+/* Rows with a thumbnail become two columns: text, then the image on the
+   right. Rows without one are left untouched, so a list where only some
+   projects have an image still lines up. */
+.project-row--with-thumb {
+  display: grid;
+  grid-template-columns: 1fr 9.5rem;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.project-row__thumb {
+  display: block;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.project-row__thumb img {
+  width: 100%;
+  /* A consistent shape regardless of the source image's dimensions. */
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+@media (max-width: 36rem) {
+  /* Stack on small screens, with the image above the title. */
+  .project-row--with-thumb {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-4);
+  }
+
+  .project-row__thumb img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 /* --- Status label -------------------------------------------------------- */

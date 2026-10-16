@@ -17,7 +17,11 @@ import TechList from './TechList.astro';
 
 interface Props {
   project: Project;
-  /** Set to true to show the project's image in the listing. */
+  /**
+   * Show the project's `image` as a small thumbnail beside the row.
+   * Projects without an `image` simply show no thumbnail — no placeholder
+   * box is drawn, so a mixed list stays tidy.
+   */
   showImage?: boolean;
   /**
    * Heading level for the project title, so the page keeps a correct
@@ -37,57 +41,67 @@ const dates = formatDateRange(
   isOngoing(project),
 );
 const href = projectUrl(project.id);
+const thumbnail = showImage && data.image ? data.image : undefined;
 ---
 
-<article class="project-row">
-  <div class="project-row__head">
-    <Heading class="project-row__title">
-      <a href={href}>{data.title}</a>
-    </Heading>
-    <StatusLabel status={data.status} />
+<article class:list={['project-row', thumbnail && 'project-row--with-thumb']}>
+  <div class="project-row__body">
+    <div class="project-row__head">
+      <Heading class="project-row__title">
+        <a href={href}>{data.title}</a>
+      </Heading>
+      <StatusLabel status={data.status} />
+    </div>
+
+    <p class="project-row__description">{data.shortDescription}</p>
+
+    <div class="project-row__footer">
+      <TechList
+        technologies={data.technologies}
+        label={`Technologies used in ${data.title}`}
+      />
+
+      <ul class="project-row__links">
+        <li>
+          <a href={href}>
+            Read write-up<span class="visually-hidden"> about {data.title}</span>
+          </a>
+        </li>
+        {
+          data.githubUrl && (
+            <li>
+              <a href={data.githubUrl} target="_blank" rel="noopener">
+                Code<span class="visually-hidden"> for {data.title} on GitHub</span>
+              </a>
+            </li>
+          )
+        }
+        {
+          data.liveUrl && (
+            <li>
+              <a href={data.liveUrl} target="_blank" rel="noopener">
+                Live site<span class="visually-hidden"> for {data.title}</span>
+              </a>
+            </li>
+          )
+        }
+      </ul>
+
+      {dates && <span class="experience-entry__dates">{dates}</span>}
+    </div>
   </div>
 
-  <p class="project-row__description">{data.shortDescription}</p>
-
+  {/*
+    The thumbnail links to the same place as the title above it, so it is
+    hidden from screen readers and skipped by the keyboard to avoid
+    announcing the same destination twice. The image is described properly
+    by its alt text on the project's own page.
+  */}
   {
-    showImage && data.image && (
-      <img
-        class="project-row__image"
-        src={url(data.image)}
-        alt={data.imageAlt}
-        loading="lazy"
-        decoding="async"
-      />
+    thumbnail && (
+      <a class="project-row__thumb" href={href} tabindex="-1" aria-hidden="true">
+        <img src={url(thumbnail)} alt="" loading="lazy" decoding="async" />
+      </a>
     )
   }
-
-  <div class="project-row__footer">
-    <TechList technologies={data.technologies} label={`Technologies used in ${data.title}`} />
-
-    <ul class="project-row__links">
-      <li>
-        <a href={href}>Read write-up<span class="visually-hidden"> about {data.title}</span></a>
-      </li>
-      {
-        data.githubUrl && (
-          <li>
-            <a href={data.githubUrl} target="_blank" rel="noopener">
-              Code<span class="visually-hidden"> for {data.title} on GitHub</span>
-            </a>
-          </li>
-        )
-      }
-      {
-        data.liveUrl && (
-          <li>
-            <a href={data.liveUrl} target="_blank" rel="noopener">
-              Live site<span class="visually-hidden"> for {data.title}</span>
-            </a>
-          </li>
-        )
-      }
-    </ul>
-
-    {dates && <span class="experience-entry__dates">{dates}</span>}
-  </div>
 </article>

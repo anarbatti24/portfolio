@@ -89,7 +89,7 @@ const hasResume = Boolean(links.resume) && publicFileExists(links.resume);
         <ul class="project-list">
           {featured.map((project) => (
             <li>
-              <ProjectRow project={project} />
+              <ProjectRow project={project} showImage />
             </li>
           ))}
         </ul>

@@ -298,15 +298,28 @@ and what shows if the image fails to load. Describe what the image *shows*:
 - Poor: `![diagram](...)`
 - Poor: `![screenshot of my project](...)`
 
-### 4. Optional: a lead image for the project
+### 4. Optional: a thumbnail / lead image for the project
 
-You can also set one image in the metadata, which appears at the top of the
-project page and in the home page preview:
+Separately from images in the body, you can set **one** image in the metadata:
 
 ```yaml
 image: "/images/projects/binaro-version-comparison.png"
 imageAlt: "Average solve time per puzzle for solver versions v1, v2, and v3"
 ```
+
+This one image is used in two places:
+
+- As a **small thumbnail** beside the project's row on the Projects page and in
+  the home page's featured section.
+- As a **full-width lead image** at the top of the project's own page.
+
+Pick an image that reads well small — a clear graph or a clean photo works; a
+dense screenshot of text does not. Any shape works: thumbnails are cropped to a
+consistent rectangle automatically, so you do not need to resize anything.
+
+Projects without an `image` simply have no thumbnail. No placeholder box is
+drawn, so a list where only some projects have images still looks tidy. This is
+worth knowing because a planned project may never have one.
 
 If you set `image` you **must** also set `imageAlt`. The build will stop with a
 clear message if you forget, which is deliberate — it keeps the site accessible.
@@ -857,7 +870,7 @@ Fields for files in `src/content/projects/`. Defined in `src/content.config.ts`.
 | `technologies` | list of text | no | empty | Hidden entirely when empty. |
 | `githubUrl` | URL | no | — | Must include `https://`. |
 | `liveUrl` | URL | no | — | Must include `https://`. |
-| `image` | text | no | — | e.g. `"/images/projects/graph.png"`. Requires `imageAlt`. |
+| `image` | text | no | — | e.g. `"/images/projects/graph.png"`. Used as the listing thumbnail and the lead image. Requires `imageAlt`. |
 | `imageAlt` | text | no | — | Description of the image for screen readers. |
 | `sortOrder` | number | no | `100` | Lower appears first. No quotes. |
 | `draft` | true/false | no | `false` | `true` hides the project from the site. |
