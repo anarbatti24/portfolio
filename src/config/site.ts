@@ -99,8 +99,8 @@ export const site = {
  *  site. Nothing breaks and no empty button is left behind.
  * ------------------------------------------------------------------------ */
 export const links = {
-  /** Your email address, without "mailto:". PLACEHOLDER — fill this in. */
-  email: '',
+  /** Your email address, without "mailto:". */
+  email: 'anarbatti24@gmail.com',
 
   github: 'https://github.com/anarbatti24',
 
