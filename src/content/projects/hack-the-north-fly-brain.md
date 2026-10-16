@@ -1,5 +1,5 @@
 ---
-title: "Fly Brain"
+title: "SOAR - A "
 shortDescription: "A hackathon project built at Hack the North 2026."
 category: "Hackathon"
 # TODO: set a status once you fill this page in, e.g. "Completed".
@@ -13,7 +13,7 @@ technologies: []
 # githubUrl: ""
 # liveUrl: ""
 sortOrder: 4
-draft: false
+draft: true
 ---
 
 ## Overview

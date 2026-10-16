@@ -24,8 +24,8 @@ and zeros. This project is a C++ solver for it, written less to solve the
 puzzle than to study what makes a program fast on real hardware.
 
 The work is organised as a series of solver versions. Each version changes one
-aspect of the implementation — the data representation, the memory layout, the
-algorithm — and is then measured under the same conditions, so the effect of
+aspect of the implementation: the data representation, the memory layout, the
+algorithm and is then measured under the same conditions, so the effect of
 that change can be attributed to the change itself.
 
 ## Motivation and problem

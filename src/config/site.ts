@@ -82,7 +82,8 @@ export const site = {
    */
   interests: [
     'Systems programming',
-    'High-performance computing and software optimization',
+    'High-performance computing',
+    'Software optimization',
     'C and C++',
     'Linux and performance profiling',
     'Computer architecture',
@@ -105,7 +106,8 @@ export const links = {
   github: 'https://github.com/anarbatti24',
 
   /** PLACEHOLDER — paste your full LinkedIn profile URL here. */
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/aniket-arbatti/',
+
 
   /**
    * Path to your resume inside the `public/` folder.

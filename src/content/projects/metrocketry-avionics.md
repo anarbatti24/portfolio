@@ -20,7 +20,7 @@ draft: false
 
 MetRocketry is Toronto Metropolitan University's student rocketry team. My work
 has been on the avionics side: the flight computer's power subsystem, PCB
-design, telemetry hardware, and the integration between the embedded software
+design, telemetry hardware and the integration between the embedded software
 and the boards it runs on.
 
 Avionics is a team effort and the flight computer is a collaborative design, so
@@ -32,18 +32,20 @@ as a whole.
 - Flight computer **power subsystem** design: a 7.4 V battery input feeding
   regulated 3.3 V and 5 V rails for the flight computer and its peripherals.
 - **MCU-controlled electronic fuses**, so that power to individual subsystems
-  can be switched and protected under software control rather than only by
-  physical fusing.
-- **PCB design** in KiCad and Altium Designer.
-- **Telemetry hardware** and peripheral integration, including radio and
-  microSD communication over SPI.
+  can be safely controlled to avoid under/over voltage/current, ensuring
+  safe operation.
+- **PCB design** in Altium Designer.
+- **Telemetry hardware** and peripheral integration, including LoRa radio,
+  microSD over SPI, barometer, accelerometer/gyrometer and
+  temperature sensors over I2C and a GPS over UART.
 
 ## Team context
 
-The flight computer is designed and built by the avionics sub-team, and a
-number of its subsystems were developed by other members. I also served as
-**Avionics Lead**, and the team has participated in IREC-related rocketry
-activities. The leadership side of the role is covered on the
+The flight computer is designed and built by the avionics sub-team and a
+number of its subsystems were developed by other members. The team has 
+participated in the **International Rocket Engineering Competition**. 
+Following the compeition this year in June, I was promoted to
+**Avionics PCB/CAD Lead** The leadership side of the role is covered on the
 [experience page](/experience/).
 
 <!-- ==========================================================================
