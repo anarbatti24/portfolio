@@ -4,13 +4,13 @@ shortDescription: "Avionics engineering on a student rocketry team, covering the
 category: "Embedded"
 status: "In Progress"
 # TODO: add the month you joined the avionics team, e.g. "2024-09".
-# startDate: "2024-09"
+startDate: "2024-10"
 featured: true
 technologies:
-  - KiCad
   - Altium Designer
   - Power electronics
   - SPI
+  - I2C
   - Embedded systems
 sortOrder: 3
 draft: false
@@ -45,7 +45,7 @@ The flight computer is designed and built by the avionics sub-team and a
 number of its subsystems were developed by other members. The team has 
 participated in the **International Rocket Engineering Competition**. 
 Following the compeition this year in June, I was promoted to
-**Avionics PCB/CAD Lead** The leadership side of the role is covered on the
+**Avionics PCB/CAD Lead**. The leadership side of the role is covered on the
 [experience page](/experience/).
 
 <!-- ==========================================================================

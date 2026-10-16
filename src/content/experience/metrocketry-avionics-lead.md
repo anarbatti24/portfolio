@@ -12,7 +12,6 @@ technologies:
   - Power electronics
   - SPI
   - I2C
-  - UART
   - Embedded systems
 sortOrder: 1
 draft: false
