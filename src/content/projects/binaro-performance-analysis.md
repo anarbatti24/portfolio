@@ -10,14 +10,16 @@ technologies:
   - C++
   - Linux
   - perf
-  - Cachegrind
   - Make
+  - Shell script
 githubUrl: "https://github.com/anarbatti24/High-Performance-Analysis-of-Binaro"
 sortOrder: 1
 draft: false
 ---
 
 ## Overview
+
+**The detailed version with measurements, images and profiling methodology is on my dedicated GitHub for the project, please visit that!**
 
 Binaro (also known as Takuzu) is a logic puzzle played on a 10×10 grid of ones
 and zeros. This project is a C++ solver for it, written less to solve the

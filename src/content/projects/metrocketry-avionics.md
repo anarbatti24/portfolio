@@ -12,7 +12,7 @@ technologies:
   - SPI
   - I2C
   - Embedded systems
-sortOrder: 3
+sortOrder: 2
 draft: false
 ---
 
@@ -47,6 +47,11 @@ participated in the **International Rocket Engineering Competition**.
 Following the compeition this year in June, I was promoted to
 **Avionics PCB/CAD Lead**. The leadership side of the role is covered on the
 [experience page](/experience/).
+
+## Images
+Power Board PCB Layout: (/images/projects/metrocketry-power-board.png)
+
+Telemetry Board PCB Layout: (/images/projects/metrocketry-sensor-board.png)
 
 <!-- ==========================================================================
      SECTIONS TO ADD AS YOU WRITE THIS UP
@@ -87,7 +92,7 @@ Following the compeition this year in June, I was promoted to
      diagrams. Put the image files in public/images/projects/ first, then paste
      these lines in and fix the filenames and the descriptions:
 
-## Hardware
+Hardware
 
 ![Assembled flight computer power board, top side](/images/projects/metrocketry-power-board.jpg)
 

@@ -19,7 +19,7 @@ technologies:
   - TMDB API
 githubUrl: "https://github.com/anarbatti24/Go-"
 liveUrl: "https://go-jade-chi.vercel.app/"
-sortOrder: 2
+sortOrder: 3
 draft: false
 ---
 
