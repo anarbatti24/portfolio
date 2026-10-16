@@ -1,0 +1,93 @@
+---
+/**
+ * One row in a project listing. Used by both the projects page and the
+ * featured section of the home page, which is why project information never
+ * has to be written twice.
+ *
+ * Every optional field is checked before it is rendered, so a project with
+ * no status, no dates, no technologies, no image, and no links still
+ * produces a clean row.
+ */
+import type { Project } from '../lib/content';
+import { isOngoing } from '../lib/content';
+import { formatDateRange } from '../lib/format';
+import { projectUrl, url } from '../lib/url';
+import StatusLabel from './StatusLabel.astro';
+import TechList from './TechList.astro';
+
+interface Props {
+  project: Project;
+  /** Set to true to show the project's image in the listing. */
+  showImage?: boolean;
+  /**
+   * Heading level for the project title, so the page keeps a correct
+   * heading order: 2 on the projects page (straight under the h1), 3 on the
+   * home page (under the "Selected projects" h2).
+   */
+  headingLevel?: 2 | 3;
+}
+
+const { project, showImage = false, headingLevel = 3 } = Astro.props;
+const { data } = project;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
+const dates = formatDateRange(
+  data.startDate,
+  data.endDate,
+  isOngoing(project),
+);
+const href = projectUrl(project.id);
+---
+
+<article class="project-row">
+  <div class="project-row__head">
+    <Heading class="project-row__title">
+      <a href={href}>{data.title}</a>
+    </Heading>
+    <StatusLabel status={data.status} />
+  </div>
+
+  <p class="project-row__description">{data.shortDescription}</p>
+
+  {
+    showImage && data.image && (
+      <img
+        class="project-row__image"
+        src={url(data.image)}
+        alt={data.imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
+
+  <div class="project-row__footer">
+    <TechList technologies={data.technologies} label={`Technologies used in ${data.title}`} />
+
+    <ul class="project-row__links">
+      <li>
+        <a href={href}>Read write-up<span class="visually-hidden"> about {data.title}</span></a>
+      </li>
+      {
+        data.githubUrl && (
+          <li>
+            <a href={data.githubUrl} target="_blank" rel="noopener">
+              Code<span class="visually-hidden"> for {data.title} on GitHub</span>
+            </a>
+          </li>
+        )
+      }
+      {
+        data.liveUrl && (
+          <li>
+            <a href={data.liveUrl} target="_blank" rel="noopener">
+              Live site<span class="visually-hidden"> for {data.title}</span>
+            </a>
+          </li>
+        )
+      }
+    </ul>
+
+    {dates && <span class="experience-entry__dates">{dates}</span>}
+  </div>
+</article>

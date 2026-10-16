@@ -1,0 +1,13 @@
+---
+/**
+ * Small, understated label for a project status.
+ * Renders nothing at all when a project has no status set.
+ */
+interface Props {
+  status?: 'Planned' | 'In Progress' | 'Completed';
+}
+
+const { status } = Astro.props;
+---
+
+{status && <span class="status">{status}</span>}

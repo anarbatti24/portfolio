@@ -1,0 +1,54 @@
+---
+/**
+ * Site header: your name plus the navigation bar.
+ *
+ * The links come from `navigation` in `src/config/site.ts`, so add or rename
+ * a page there rather than here. The resume link appears automatically once
+ * `public/documents/resume.pdf` exists.
+ */
+import { site, links, navigation } from '../config/site';
+import { url, publicFileExists } from '../lib/url';
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const hasResume = Boolean(links.resume) && publicFileExists(links.resume);
+
+const isCurrent = (href: string) => {
+  const target = url(href).replace(/\/+$/, '') || '/';
+  if (target === (url('/').replace(/\/+$/, '') || '/')) {
+    return currentPath === target;
+  }
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href={url('/')}>{site.name}</a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={url(item.href)}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        {
+          hasResume && (
+            <li>
+              <a class="site-nav__resume" href={url(links.resume)}>
+                Resume
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,60 @@
+---
+/**
+ * The layout every project page uses: title, metadata strip, optional lead
+ * image, then the Markdown write-up.
+ *
+ * Whatever headings you write in the Markdown file (Overview, Technical
+ * Approach, Results, and so on) become the sections of the page. Nothing is
+ * required and nothing is added for you, so a page only shows what you wrote.
+ *
+ * FRAMEWORK FILE — adding or editing a project does not require changing this.
+ */
+import type { Project } from '../lib/content';
+import { url } from '../lib/url';
+import BaseLayout from './BaseLayout.astro';
+import ProjectMeta from '../components/ProjectMeta.astro';
+import TechList from '../components/TechList.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<BaseLayout title={data.title} description={data.shortDescription}>
+  <article>
+    <header class="page-header">
+      <h1>{data.title}</h1>
+      <p>{data.shortDescription}</p>
+    </header>
+
+    <ProjectMeta project={project} />
+
+    <TechList
+      class="experience-entry__tech"
+      technologies={data.technologies}
+      label={`Technologies used in ${data.title}`}
+    />
+
+    {
+      data.image && (
+        <img
+          class="project-row__image"
+          src={url(data.image)}
+          alt={data.imageAlt}
+          decoding="async"
+        />
+      )
+    }
+
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+
+  <p class="section">
+    <a href={url('/projects/')}>&larr; All projects</a>
+  </p>
+</BaseLayout>

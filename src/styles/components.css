@@ -1,0 +1,270 @@
+/* ---------------------------------------------------------------------------
+ *  COMPONENTS — the repeated pieces: project rows, status labels,
+ *  technology lists, link rows, and experience entries.
+ * ------------------------------------------------------------------------ */
+
+/* --- Intro block (home page) -------------------------------------------- */
+
+.intro h1 {
+  margin-bottom: var(--space-2);
+}
+
+.intro__tagline {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+
+.intro__text {
+  margin-top: var(--space-4);
+  max-width: 40rem;
+}
+
+/* --- Inline link row (GitHub / LinkedIn / email / resume) ---------------- */
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+/* --- Interests ----------------------------------------------------------- */
+
+.interests {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.interests li {
+  padding-left: var(--space-3);
+  position: relative;
+}
+
+.interests li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 4px;
+  height: 1px;
+  background: var(--color-border-strong);
+}
+
+@media (max-width: 36rem) {
+  .interests {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Project list and rows ---------------------------------------------- */
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-row {
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-list > li:first-child .project-row {
+  padding-top: var(--space-2);
+}
+
+.project-row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  justify-content: space-between;
+}
+
+.project-row__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-row__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.project-row__title a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.project-row__description {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  max-width: 38rem;
+}
+
+.project-row__footer {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-5);
+}
+
+.project-row__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+.project-row__image {
+  margin-top: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* --- Status label -------------------------------------------------------- */
+
+.status {
+  display: inline-block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  padding: 0.1rem 0.4rem;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+/* --- Technology list ----------------------------------------------------- */
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.tech-list li + li::before {
+  content: '·';
+  margin-right: var(--space-2);
+  color: var(--color-border-strong);
+}
+
+/* --- Metadata (project pages) -------------------------------------------- */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  align-items: baseline;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.meta__item {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.meta__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --- Experience ---------------------------------------------------------- */
+
+.experience-list {
+  list-style: none;
+  padding: 0;
+}
+
+.experience-entry {
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience-list > li:first-child .experience-entry {
+  padding-top: var(--space-2);
+}
+
+.experience-entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+}
+
+.experience-entry__role {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.experience-entry__org {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+.experience-entry__dates {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.experience-entry__description {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.experience-entry__tech {
+  margin-top: var(--space-3);
+}
+
+/* --- Empty state (shown when a collection has no entries yet) ------------- */
+
+.empty-state {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+
+/* --- 404 ----------------------------------------------------------------- */
+
+.notfound {
+  padding-block: var(--space-7);
+  text-align: left;
+}
+
+.notfound__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+}

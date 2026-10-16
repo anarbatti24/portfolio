@@ -1,0 +1,41 @@
+---
+/**
+ * EXPERIENCE PAGE.
+ *
+ * Every published Markdown file in `src/content/experience/` appears here
+ * automatically, ordered by `sortOrder`. Adding a role never requires
+ * editing this file.
+ */
+import { getExperience } from '../lib/content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceEntry from '../components/ExperienceEntry.astro';
+
+const entries = await getExperience();
+---
+
+<BaseLayout
+  title="Experience"
+  description="Work experience, engineering teams, and leadership roles."
+>
+  <header class="page-header">
+    <h1>Experience</h1>
+    <p>Work, engineering teams, and leadership roles.</p>
+  </header>
+
+  {
+    entries.length > 0 ? (
+      <ul class="experience-list">
+        {entries.map((entry) => (
+          <li>
+            <ExperienceEntry entry={entry} headingLevel={2} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="empty-state">
+        No experience entries yet. Add a Markdown file to
+        <code>src/content/experience/</code> and it will appear here.
+      </p>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+/**
+ * PROJECTS PAGE — the full listing.
+ *
+ * Every published Markdown file in `src/content/projects/` appears here
+ * automatically, ordered by `sortOrder`. Adding a project never requires
+ * editing this file.
+ */
+import { getProjects } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectRow from '../../components/ProjectRow.astro';
+
+const projects = await getProjects();
+---
+
+<BaseLayout
+  title="Projects"
+  description="Engineering projects in systems programming, performance analysis, embedded systems, and software development."
+>
+  <header class="page-header">
+    <h1>Projects</h1>
+    <p>
+      Write-ups of what I built, how I built it, and what the results were.
+      Ordered roughly by how well they represent my current work.
+    </p>
+  </header>
+
+  {
+    projects.length > 0 ? (
+      <ul class="project-list">
+        {projects.map((project) => (
+          <li>
+            <ProjectRow project={project} headingLevel={2} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="empty-state">
+        No projects yet. Add a Markdown file to <code>src/content/projects/</code> and it
+        will appear here.
+      </p>
+    )
+  }
+</BaseLayout>

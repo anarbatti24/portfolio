@@ -1,0 +1,22 @@
+---
+/**
+ * 404 PAGE, shown by GitHub Pages when a URL does not exist.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../lib/url';
+---
+
+<BaseLayout title="Page not found" noindex>
+  <div class="notfound">
+    <p class="notfound__code">404</p>
+    <h1>This page does not exist.</h1>
+    <p class="intro__text">
+      The link may be out of date, or the page may have moved.
+    </p>
+    <ul class="link-row">
+      <li><a href={url('/')}>Home</a></li>
+      <li><a href={url('/projects/')}>Projects</a></li>
+      <li><a href={url('/experience/')}>Experience</a></li>
+    </ul>
+  </div>
+</BaseLayout>

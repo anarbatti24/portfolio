@@ -1,0 +1,52 @@
+---
+/**
+ * Site footer. Links come from `links` in `src/config/site.ts`; any entry
+ * left empty there is simply not shown.
+ */
+import { site, links } from '../config/site';
+import { url, publicFileExists } from '../lib/url';
+
+const year = new Date().getFullYear();
+const hasResume = Boolean(links.resume) && publicFileExists(links.resume);
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>&copy; {year} {site.name}</p>
+
+    <ul>
+      {
+        links.github && (
+          <li>
+            <a href={links.github} rel="me noopener" target="_blank">
+              GitHub
+            </a>
+          </li>
+        )
+      }
+      {
+        links.linkedin && (
+          <li>
+            <a href={links.linkedin} rel="me noopener" target="_blank">
+              LinkedIn
+            </a>
+          </li>
+        )
+      }
+      {
+        links.email && (
+          <li>
+            <a href={`mailto:${links.email}`}>Email</a>
+          </li>
+        )
+      }
+      {
+        hasResume && (
+          <li>
+            <a href={url(links.resume)}>Resume</a>
+          </li>
+        )
+      }
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,52 @@
+/* ---------------------------------------------------------------------------
+ *  DESIGN TOKENS
+ *
+ *  The colours, fonts, and spacing values used by every page. Changing a
+ *  value here changes it across the whole site. Everything else references
+ *  these variables rather than hard-coding colours.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  /* Colour — intentionally close to monochrome with one muted accent. */
+  --color-bg: #fcfcfb;
+  --color-surface: #ffffff;
+  --color-text: #1b1b1b;
+  --color-text-muted: #5b5f66;
+  --color-border: #e4e3df;
+  --color-border-strong: #cecdc7;
+  --color-accent: #2d5f7f;
+  --color-accent-hover: #1f4660;
+  --color-code-bg: #f6f6f4;
+
+  /* Type */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.4rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.125rem;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* Spacing (4px scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.75rem;
+  --space-8: 4rem;
+
+  /* Layout */
+  --width-content: 46rem;
+  --radius: 3px;
+}

@@ -1,0 +1,37 @@
+---
+/**
+ * INDIVIDUAL PROJECT PAGES.
+ *
+ * This single file generates one page per Markdown file in
+ * `src/content/projects/`. The URL comes from the file name:
+ *
+ *   src/content/projects/binaro-performance.md
+ *     -> /projects/binaro-performance/
+ *
+ * FRAMEWORK FILE — you never need to edit this to add a project.
+ */
+import { render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { getProjects, type Project } from '../../lib/content';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const projects = await getProjects();
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+};
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<ProjectLayout project={project}>
+  <Content />
+</ProjectLayout>

@@ -1,0 +1,120 @@
+---
+/**
+ * HOME PAGE.
+ *
+ * The featured projects and the experience preview are read from the content
+ * collections, so this file never needs editing when your content changes.
+ * To change which projects appear here, set `featured: true` in a project's
+ * Markdown file.
+ */
+import { site, links, homepage } from '../config/site';
+import { url, publicFileExists } from '../lib/url';
+import { getFeaturedProjects, getExperience } from '../lib/content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import ExperienceEntry from '../components/ExperienceEntry.astro';
+
+const featured = await getFeaturedProjects(homepage.maxFeaturedProjects);
+const experience = await getExperience(homepage.maxExperienceEntries);
+const hasResume = Boolean(links.resume) && publicFileExists(links.resume);
+---
+
+<BaseLayout title={site.name}>
+  <section class="intro">
+    <h1>{site.name}</h1>
+    <p class="intro__tagline">{site.tagline} &middot; {site.university}</p>
+    <p class="intro__text">{site.intro}</p>
+
+    <ul class="link-row">
+      {
+        links.github && (
+          <li>
+            <a href={links.github} target="_blank" rel="me noopener">
+              GitHub
+            </a>
+          </li>
+        )
+      }
+      {
+        links.linkedin && (
+          <li>
+            <a href={links.linkedin} target="_blank" rel="me noopener">
+              LinkedIn
+            </a>
+          </li>
+        )
+      }
+      {
+        links.email && (
+          <li>
+            <a href={`mailto:${links.email}`}>{links.email}</a>
+          </li>
+        )
+      }
+      {
+        hasResume && (
+          <li>
+            <a href={url(links.resume)}>Resume (PDF)</a>
+          </li>
+        )
+      }
+    </ul>
+  </section>
+
+  {
+    site.interests.length > 0 && (
+      <section class="section">
+        <div class="section__header">
+          <h2>Technical interests</h2>
+        </div>
+        <ul class="interests">
+          {site.interests.map((interest) => (
+            <li>{interest}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    featured.length > 0 && (
+      <section class="section">
+        <div class="section__header">
+          <h2>Selected projects</h2>
+          <a class="section__link" href={url('/projects/')}>
+            All projects &rarr;
+          </a>
+        </div>
+
+        <ul class="project-list">
+          {featured.map((project) => (
+            <li>
+              <ProjectRow project={project} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    experience.length > 0 && (
+      <section class="section">
+        <div class="section__header">
+          <h2>Experience</h2>
+          <a class="section__link" href={url('/experience/')}>
+            Full experience &rarr;
+          </a>
+        </div>
+
+        <ul class="experience-list">
+          {experience.map((entry) => (
+            <li>
+              <ExperienceEntry entry={entry} showBody={false} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>

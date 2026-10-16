@@ -1,0 +1,24 @@
+---
+/**
+ * The comma-free, dot-separated list of technologies.
+ * Renders nothing when the `technologies` array is empty or missing.
+ */
+interface Props {
+  technologies?: readonly string[];
+  label?: string;
+  class?: string;
+}
+
+const { technologies = [], label = 'Technologies used', class: className } =
+  Astro.props;
+---
+
+{
+  technologies.length > 0 && (
+    <ul class:list={['tech-list', className]} aria-label={label}>
+      {technologies.map((tech) => (
+        <li>{tech}</li>
+      ))}
+    </ul>
+  )
+}

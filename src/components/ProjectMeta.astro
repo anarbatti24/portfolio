@@ -1,0 +1,63 @@
+---
+/**
+ * The metadata strip under the title on a project page: status, category,
+ * dates, and links. Each piece is only rendered when the project actually
+ * provides it.
+ */
+import type { Project } from '../lib/content';
+import { isOngoing } from '../lib/content';
+import { formatDateRange } from '../lib/format';
+import StatusLabel from './StatusLabel.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+
+const dates = formatDateRange(data.startDate, data.endDate, isOngoing(project));
+---
+
+<div class="meta">
+  <StatusLabel status={data.status} />
+
+  {
+    data.category && (
+      <span class="meta__item">
+        <span class="meta__label">Category</span>
+        <span>{data.category}</span>
+      </span>
+    )
+  }
+
+  {
+    dates && (
+      <span class="meta__item">
+        <span class="meta__label">Dates</span>
+        <time datetime={data.startDate}>{dates}</time>
+      </span>
+    )
+  }
+
+  {
+    (data.githubUrl || data.liveUrl) && (
+      <span class="meta__item">
+        <span class="meta__label">Links</span>
+        <span>
+          {data.githubUrl && (
+            <a href={data.githubUrl} target="_blank" rel="noopener">
+              GitHub repository
+            </a>
+          )}
+          {data.githubUrl && data.liveUrl && ' · '}
+          {data.liveUrl && (
+            <a href={data.liveUrl} target="_blank" rel="noopener">
+              Live site
+            </a>
+          )}
+        </span>
+      </span>
+    )
+  }
+</div>

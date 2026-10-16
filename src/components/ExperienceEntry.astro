@@ -1,0 +1,70 @@
+---
+/**
+ * One entry on the experience page: role, organisation, dates, an optional
+ * summary, optional technologies, and whatever you wrote in the Markdown
+ * body underneath the metadata.
+ *
+ * An entry with no end date is shown as "… – Present".
+ */
+import { render } from 'astro:content';
+import type { Experience } from '../lib/content';
+import { formatDateRange } from '../lib/format';
+import TechList from './TechList.astro';
+
+interface Props {
+  entry: Experience;
+  /** Set to false on the home page preview to hide the long description. */
+  showBody?: boolean;
+  /**
+   * Heading level for the role, so the page keeps a correct heading order:
+   * 2 on the experience page, 3 under the home page's "Experience" h2.
+   */
+  headingLevel?: 2 | 3;
+}
+
+const { entry, showBody = true, headingLevel = 3 } = Astro.props;
+const { data } = entry;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
+const dates = formatDateRange(data.startDate, data.endDate, !data.endDate);
+
+// `Content` is the Markdown body of the file. `hasBody` is false when the
+// file only contains metadata, so no empty space is left behind.
+const { Content } = await render(entry);
+const hasBody = Boolean(entry.body?.trim());
+---
+
+<article class="experience-entry">
+  <div class="experience-entry__head">
+    <Heading class="experience-entry__role">{data.role}</Heading>
+    {dates && <span class="experience-entry__dates">{dates}</span>}
+  </div>
+
+  <p class="experience-entry__org">
+    {
+      data.url ? (
+        <a href={data.url} target="_blank" rel="noopener">
+          {data.organization}
+        </a>
+      ) : (
+        data.organization
+      )
+    }{data.location && <> &middot; {data.location}</>}
+  </p>
+
+  {data.description && <p class="experience-entry__description">{data.description}</p>}
+
+  {
+    showBody && hasBody && (
+      <div class="prose">
+        <Content />
+      </div>
+    )
+  }
+
+  <TechList
+    class="experience-entry__tech"
+    technologies={data.technologies}
+    label={`Technologies used at ${data.organization}`}
+  />
+</article>
