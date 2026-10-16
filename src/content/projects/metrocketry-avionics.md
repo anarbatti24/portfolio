@@ -49,9 +49,9 @@ Following the compeition this year in June, I was promoted to
 [experience page](/experience/).
 
 ## Images
-Power Board PCB Layout: (/images/projects/metrocketry-power-board.png)
+![Power Board PCB Layout](/images/projects/metrocketry-power-board.png)
 
-Telemetry Board PCB Layout: (/images/projects/metrocketry-sensor-board.png)
+![Telemetry Board PCB Layout](/images/projects/metrocketry-sensor-board.png)
 
 <!-- ==========================================================================
      SECTIONS TO ADD AS YOU WRITE THIS UP
